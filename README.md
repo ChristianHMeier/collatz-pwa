@@ -1,6 +1,6 @@
 # Collatz Conjecture PWA
 
-A small project made from the desire of practicing PWA development and teach about the Collatz Conjecture.
+A small project made from the desire of practicing PWA development and teach about the Collatz Conjecture. A live demo can be tested [here](https://christianhmeier.github.io/collatz-pwa/).
 
 The calculator accepts any positive integer number and applies recursively the following operations until reaching the 4-2-1 cycle, or trivial cycle.
 
@@ -45,7 +45,7 @@ Additionally, 16 is the pure multiple of 4 that appeared most often when testing
 
 ## Special Thanks
 
-Thanks to the Youtube channel [Veritasium](https://www.youtube.com/@veritasium) for making the video that brought this problem to my attention; to Professor Jeffrey C. Lagarias for participating in it and editing ["The Ultimate Challenge: The 3x + 1 Problem"](https://books.google.com/books/about/The_Ultimate_Challenge.html?id=hekJ7JDMEVkC) I borrowed twice before making this PWA; and to [Alexandro Palacios](https://github.com/AlexSp3) for authoring the library that enabled me to test my observation about pure multiples of 4 while employing BigInt numbers in the PWA.
+Thanks to the Youtube channel [Veritasium](https://www.youtube.com/@veritasium) for making the video that brought this problem to my attention; to Professor Jeffrey C. Lagarias for participating in it and editing ["The Ultimate Challenge: The 3x + 1 Problem"](https://books.google.com/books/about/The_Ultimate_Challenge.html?id=hekJ7JDMEVkC) I borrowed twice before making this PWA; to [Alexandro Palacios](https://github.com/AlexSp3) for authoring the library that enabled me to test my observation about pure multiples of 4 while employing BigInt numbers in the PWA; and to the LearnVue channel for the quick lesson on [how to deploy Vite apps on GitHub](https://www.youtube.com/watch?v=yo2bMGnIKE8).
 
 ## License
 
