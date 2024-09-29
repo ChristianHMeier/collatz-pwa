@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/collatz-pwa/sw.js', { scope: '/collatz-pwa/' })})}
