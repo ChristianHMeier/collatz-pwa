@@ -4,8 +4,13 @@ import { ref, onMounted } from 'vue'
 
 const count = ref('0')
 
+const steps = ref('0')
+
 const text = ref('')
 
+const odds = ref([])
+
+const stopping = ref('0')
 
 const byFourFound = ref(false)
 
@@ -36,7 +41,10 @@ async function calculateCollatz(startNumber, firstIteration) {
   // clean values on button click
   if (firstIteration) {
     text.value = ''
+    odds.value = []
     byFourFound.value = false
+    steps.value = 0
+    stopping.value = 0
   }
   
   try {
@@ -57,13 +65,25 @@ async function calculateCollatz(startNumber, firstIteration) {
       text.value += baseNumber.toString() + "\n"
     }
 
-    // avoid infinite loop when 1 is reached
+    // check for the stopping time
+    if (stopping.value === 0 && baseNumber < BigInt(count.value)) {
+      stopping.value = steps.value
+    }
+
+    // avoid infinite loop when 1 is reached, count another step in case of the contrary
     if (baseNumber === 1n) {
+      text.value += 'Stopping time: ' + stopping.value + "\n"
+      text.value += 'Total stopping time: ' + steps.value + "\n"
+      text.value += 'Amount of odd numbers before reaching the trivial cycle: ' + odds.value.length + "\n"
+      text.value += 'Amount of unique odd numbers before reaching the trivial cycle: ' + odds.value.filter((e, i, self) => i === self.indexOf(e)).length
       return
+    } else {
+      steps.value++
     }
 
     // the proper function of the Collatz Inference
     if (baseNumber % 2n !== 0n) {
+      odds.value.push(baseNumber)
       calculateCollatz(3n*baseNumber +1n, false)
     } else {
       calculateCollatz(baseNumber / 2n, false);
@@ -79,14 +99,14 @@ async function calculateCollatz(startNumber, firstIteration) {
 <template>
   <div class="row align-items-center">
     <div class="offset-1 offset-md-3 offset-lg-4 col-4 col-md-3 col-lg-2 mb-3">
-    <label for="inputNumber">Starting Number</label>
-</div>
-  <div class="col-6 col-lg-2 mb-3">
-    <input type="text" step="1" id="inputNumber" min="1" v-model="count" />
+      <label for="inputNumber">Starting Number</label>
   </div>
-<div class="col-12 mb-3 text-center">
-    <button type="button" class="btn btn-primary" @click="calculateCollatz(count, true)">Calculate!</button>
-  </div>
+    <div class="col-6 col-lg-2 mb-3">
+      <input type="text" step="1" id="inputNumber" min="1" v-model="count" />
+    </div>
+  <div class="col-12 mb-3 text-center">
+      <button type="button" class="btn btn-primary" @click="calculateCollatz(count, true)">Calculate!</button>
+    </div>
   <div id="bottom" class="col-12 mb-3 px-5">
     <textarea class="w-100" v-model="text"></textarea>
   </div>
